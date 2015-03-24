@@ -1,0 +1,9 @@
+
+.catImg {
+    position:relative;
+    top: 0;
+    left: 0;
+    width:200px;
+    heigth:200px;
+    opacity:1;
+}
