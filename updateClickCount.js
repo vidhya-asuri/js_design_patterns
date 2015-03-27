@@ -42,7 +42,7 @@ var updateClickCountLabels = function(catId){
 		var label = document.getElementById("clickCount1");
 		var clk1 = clkCounts.clickCount1;  // retrieve clickCount1 from global var.
 		clkCounts.clickCount1 = clk1 + 1;
-		text = "You clicked on " + catId + " " + clkCounts.clickCount1 + " times!";
+		text = "You clicked on Freddy " + clkCounts.clickCount1 + " times!";
 		label.textContent = text;
 	}
 	else if (catId === "catImg2")
@@ -50,7 +50,7 @@ var updateClickCountLabels = function(catId){
 		var label = document.getElementById("clickCount2");
 		var clk2 = clkCounts.clickCount2;  // retrieve clickCount1 from global var.
 		clkCounts.clickCount2 = clk2 + 1;
-		text = "You clicked on " + catId + " " + clkCounts.clickCount2 + " times!";
+		text = "You clicked on Timmy " + clkCounts.clickCount2 + " times!";
 		label.textContent = text;
 	}
 	
