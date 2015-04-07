@@ -4,6 +4,43 @@
     top: 0;
     left: 0;
     width:200px;
-    heigth:200px;
+    height:200px;
     opacity:1;
 }
+
+
+.catList {
+    position: absolute; 
+    float:left;
+    top: 0;
+    left: 0;
+    width:200px;
+    height:100%;
+    text-align: center;
+    opacity:1;
+    background-color:#FAF29E;
+}
+
+/*.catName{
+	margin: 2%;
+	padding:5%;
+}*/
+
+
+.list {
+border: thin solid green;
+margin: 2%;
+padding: 2%;
+width: 45%;
+overflow: hidden;
+margin-left: 200px;
+}
+
+.catDetails
+{
+	margin-left: 200px;
+	width: 45%;
+
+}
+
+
