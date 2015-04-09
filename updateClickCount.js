@@ -1,18 +1,48 @@
 var displayCat = function(){
 	var id = this.id;
+	var catObj = this.catObj;
 	var catPicName = id + ".jpg";
 	var catPicTable = document.getElementById("catPic"); 
 	var catImg = document.createElement("img"); 
 	catImg.src=catPicName;
 	catImg.className="catImg";
-
+	//catImg.onclick = clickHandler;
+	catImg.id = "catImg" + id.toString();
 	while(catPicTable.hasChildNodes())
 	{
 		// remove child 
 		catPicTable.removeChild(catPicTable.childNodes[0]);
 	}
+	catImg.addEventListener("click", function(){clickHandler(id)} , false);
 	catPicTable.appendChild(catImg);
+	updateClickCountInit(id);
 };
+
+function clickHandler(catNameLinkId){
+	updateClickCountLabels(catNameLinkId);
+};
+
+var updateClickCountInit = function(catNameLinkId){
+	var catNameLink = document.getElementById(catNameLinkId);
+	var catObj = catNameLink.catObj;
+	var clkCount = document.getElementById("clickCount");
+	var catName = document.getElementById("catName");
+	//catObj.incrementClickCount();
+	catName.textContent = catObj.name;
+	clkCount.textContent = catObj.clickCount;
+};
+
+var updateClickCountLabels = function(catNameLinkId){
+	var catNameLink = document.getElementById(catNameLinkId);
+	var catObj = catNameLink.catObj;
+	var clkCount = document.getElementById("clickCount");
+	var catName = document.getElementById("catName");
+	catObj.incrementClickCount();
+	catName.textContent = catObj.name;
+	clkCount.textContent = catObj.clickCount;
+};
+
+
 
 
 function displayCatNames(numCats) { 
@@ -31,9 +61,10 @@ function displayCatNames(numCats) {
 		catNameLink.id = "cat" + i.toString();
 		catNameLink.className="catName";
 		catNameLink.onclick = displayCat;
+		var myCat = new Cat(catNameLink.id,"",0);
+		catNameLink.catObj = myCat;
 	  	catDiv.appendChild(catNameLink); //add the text node to the newly created div. 
 	  	catNameLink.appendChild(lineBreak);
-
 	}
   	// add the newly created element and its content into the DOM 
 }
@@ -70,43 +101,6 @@ function startProcessing(clkCounts){
 	document.body.onload = displayCatNames(5);
 }
 
-var clickHandler = function(e){
-	var catId = this.id;
-	//clkCounts.clickCount1 = clkCounts.clickCount1 + 1;
-	//clkCounts.clickCount2 = clkCounts.clickCount2 + 1;
-	
-	updateClickCountLabels(catId);
-};
-
-var updateClickCountLabels = function(catId){
-	var text = "";
-	var clk1, clk2;
-	if(catId === "catImg1")
-	{
-		var label = document.getElementById("clickCount1");
-		//var clk1 = clkCounts.clickCount1;  // retrieve clickCount1 from global var.
-		//clkCounts.clickCount1 = clk1 + 1;
-		
-		//var clkCnt = cats[0].clickCount;
-		//cats[0].clickCount = clkCnt + 1;
-		//text = "You clicked on Freddy " + clkCounts.clickCount1 + " times!";
-		cats[0].incrementClickCount();
-		text = "You clicked on " + cats[0].name + " " + cats[0].clickCount + " times!";
-		label.textContent = text;
-	}
-	else if (catId === "catImg2")
-	{
-		var label = document.getElementById("clickCount2");
-		//var clk2 = clkCounts.clickCount2;  // retrieve clickCount1 from global var.
-		//clkCounts.clickCount2 = clk2 + 1;
-		//var clkCnt = cats[0].clickCount;
-		//cats[0].clickCount = clkCnt + 1;
-		cats[1].incrementClickCount();
-		text = "You clicked on " + cats[1].name + " "  + cats[1].clickCount + " times!";
-		label.textContent = text;
-	}
-	
-};
 
 
 function createCats(numCats){
@@ -117,9 +111,6 @@ function createCats(numCats){
 		var aCat = new Cat(nameOfCat,"",0);
 		cats.push(aCat);
 	}
-	/*var cat1 = new Cat("Timmy","",0);
-	var cat2 = new Cat("Freddy","",0);
-    var cats = [cat1, cat2];*/
 	return cats;
 }
 
