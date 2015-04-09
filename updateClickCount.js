@@ -15,35 +15,25 @@ var displayCat = function(){
 	}
 	catImg.addEventListener("click", function(){clickHandler(id)} , false);
 	catPicTable.appendChild(catImg);
-	updateClickCountInit(id);
+	updateClickCountLabels(id,false);
 };
 
 function clickHandler(catNameLinkId){
-	updateClickCountLabels(catNameLinkId);
+	updateClickCountLabels(catNameLinkId,true);
 };
 
-var updateClickCountInit = function(catNameLinkId){
+var updateClickCountLabels = function(catNameLinkId,incClickCount){
 	var catNameLink = document.getElementById(catNameLinkId);
 	var catObj = catNameLink.catObj;
 	var clkCount = document.getElementById("clickCount");
 	var catName = document.getElementById("catName");
-	//catObj.incrementClickCount();
+	if(incClickCount)
+	{
+		catObj.incrementClickCount();
+	}
 	catName.textContent = catObj.name;
 	clkCount.textContent = catObj.clickCount;
 };
-
-var updateClickCountLabels = function(catNameLinkId){
-	var catNameLink = document.getElementById(catNameLinkId);
-	var catObj = catNameLink.catObj;
-	var clkCount = document.getElementById("clickCount");
-	var catName = document.getElementById("catName");
-	catObj.incrementClickCount();
-	catName.textContent = catObj.name;
-	clkCount.textContent = catObj.clickCount;
-};
-
-
-
 
 function displayCatNames(numCats) { 
   // create a new div element 
@@ -53,12 +43,12 @@ function displayCatNames(numCats) {
   		var lineBreak = document.createElement("br");
 		var catDiv = document.getElementById("catList"); 
 		var catNameLink = document.createElement("a"); 
-		var catName = "good kitty";
-		var linkText = document.createTextNode(catName);
+		catNameLink.id = "cat" + i.toString();
+		//var catName = "good kitty";
+		var linkText = document.createTextNode(catNameLink.id);
 		catNameLink.appendChild(linkText);
 		catNameLink.title = "Title of link";
 		catNameLink.href = "#";
-		catNameLink.id = "cat" + i.toString();
 		catNameLink.className="catName";
 		catNameLink.onclick = displayCat;
 		var myCat = new Cat(catNameLink.id,"",0);
