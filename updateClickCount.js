@@ -60,7 +60,6 @@ function displayCatNames(numCats) {
 }
 
 
-
 var ClickCount = function(clickCount1,clickCount2){
 	this.clickCount1 = clickCount1;
 	this.clickCount2 = clickCount2;
